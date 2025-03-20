@@ -5,6 +5,8 @@
 # include <iostream>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form{
 	private :
 		bool sign;
@@ -25,18 +27,12 @@ class Form{
 		void beSigned(const Bureaucrat &boss);
 
 		class GradeTooHighException : public std::exception{
-			private :
-				std::string _errMsg;
 			public :
-				GradeTooHighException(std::string str);
-				virtual const char *what() const throw();
+				const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception{
-			private :
-				std::string _errMsg;
 			public :
-				virtual const char *what() const throw();
-				GradeTooLowException(std::string str);
+				const char *what() const throw();
 		};
 
 };
