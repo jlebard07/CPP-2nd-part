@@ -4,27 +4,27 @@
 Form::Form(std::string str, int sign, int exec) : name(str), signGrade(sign), execGrade(exec) {
 	this->sign = 0;
 	if (this->signGrade < 1)
-		throw GradeTooHighException();
+		throw GradeTooHighException("Form " + this->name + "'s grade too high");
 	else if (this->signGrade > 150)
-		throw GradeTooLowException();
+		throw GradeTooLowException("Form " + this->name + "'s grade too low");
 }
 
 Form::~Form() {}
 
 Form::Form(const Form &other) : sign(other.sign), name(other.name), signGrade(other.signGrade), execGrade(other.execGrade) {
 	if (this->signGrade < 1)
-		throw GradeTooHighException();
+		throw GradeTooHighException("Form " + this->name + "'s grade too high");
 	else if (this->signGrade > 150)
-		throw GradeTooLowException();
+		throw GradeTooLowException("Form " + this->name + "'s grade too low");
 }
 
 Form &Form::operator=(const Form &other){
 	this->sign = other.getSigned();
 	std::cout << this;
 	if (this->signGrade < 1)
-		throw GradeTooHighException();
+		throw GradeTooHighException("Form's grade too high");
 	else if (this->signGrade > 150)
-		throw GradeTooLowException();
+		throw GradeTooLowException("Form's grade too low");
 	return *this;
 }
 
@@ -45,23 +45,26 @@ bool Form::getSigned() const{
 }
 
 const char *Form::GradeTooHighException::what() const throw (){
-	return "Form's grade too high";	
+	return this->msg.c_str();
 }
 
 const char *Form::GradeTooLowException::what() const throw(){
-	return "Form's grade too low";
+	return this->msg.c_str();
 }
 
 void Form::beSigned(const Bureaucrat &boss){
+	std::string str = this->name;
+	std::string str2 = boss.getName();
+	
 	if (this->sign == 1){
-		throw GradeTooHighException();
+		throw GradeTooLowException(name + " has already been signed");
 	}
 	else if (boss.getLvl() < this->signGrade){
 		this->sign = 1;
-		std::cout << this->name << "has been signed by " << boss.getName() << std::endl;
+		std::cout << this->name << " has been signed by " << boss.getName() << std::endl;
 	}
 	else{
-		throw GradeTooLowException();
+		throw GradeTooLowException(str2 + " isn't important enough to sign " + str);
 	}
 }
 

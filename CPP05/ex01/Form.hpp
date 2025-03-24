@@ -27,12 +27,20 @@ class Form{
 		void beSigned(const Bureaucrat &boss);
 
 		class GradeTooHighException : public std::exception{
+			private :
+				std::string msg;
 			public :
+				GradeTooHighException(std::string str) : msg(str) {}
 				const char *what() const throw();
+				virtual ~GradeTooHighException() throw() {}
 		};
 		class GradeTooLowException : public std::exception{
+			private :
+				std::string msg;
 			public :
+				GradeTooLowException(std::string str) : msg(str) {}
 				const char *what() const throw();
+				virtual ~GradeTooLowException() throw() {}
 		};
 
 };

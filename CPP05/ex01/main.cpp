@@ -7,14 +7,14 @@ int main(){
 	Form F1("traite", 10, 2);
 	Form F2("arrete", 90, 120);
 	try{
-		Form F3("random", 151, 2);
+		Form F3("random1", 151, 2);
 		std::cout << F3 << std::endl;
 	}
 	catch (Form::GradeTooLowException &e){
 		std::cerr << "Error : " << e.what() << std::endl;
 	}
 	try{
-		Form F3("random", 0, 2);
+		Form F3("random2	", 0, 2);
 		std::cout << F3 << std::endl;
 	}
 	catch (Form::GradeTooHighException &e){
