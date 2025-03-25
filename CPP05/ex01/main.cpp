@@ -14,7 +14,7 @@ int main(){
 		std::cerr << "Error : " << e.what() << std::endl;
 	}
 	try{
-		Form F3("random2	", 0, 2);
+		Form F3("random2", 0, 2);
 		std::cout << F3 << std::endl;
 	}
 	catch (Form::GradeTooHighException &e){
@@ -26,7 +26,7 @@ int main(){
 	catch (Form::GradeTooLowException &e){
 		std::cerr << "Error : " << e.what() << std::endl;
 	}
-	std::cout << F1 << std::endl;
+	std::cout << F1;
 	try{
 		F1.beSigned(B2);
 	}

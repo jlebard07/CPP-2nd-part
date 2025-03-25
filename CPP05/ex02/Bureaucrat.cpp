@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(std::string str, int nb) : name(str){
+	std::cout << "Bureaucrat constructor called" << std::endl;
 	this->lvl = nb;
 	if (this->lvl < 1)
 		throw GradeTooLowException();
@@ -8,7 +9,9 @@ Bureaucrat::Bureaucrat(std::string str, int nb) : name(str){
 		throw GradeTooHighException();
 }
 
-Bureaucrat::~Bureaucrat() {}
+Bureaucrat::~Bureaucrat(){
+	std::cout << "Bureaucrat destructor called" << std::endl;
+}
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.getName()){
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
@@ -26,6 +29,10 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	if  (this->lvl > 150)
 		throw GradeTooHighException();
 	return *this;
+}
+
+void Bureaucrat::setLvl(int n){
+	this->lvl = n;
 }
 
 Bureaucrat &Bureaucrat::operator++(){
@@ -58,8 +65,12 @@ const char* Bureaucrat::GradeTooLowException::what() const throw(){
 	return "Bureaucrat's grade is too low !";
 }
 
-void Bureaucrat::signForm(Form &form){
+void Bureaucrat::signForm(AForm &form){
 	form.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(AForm const & form){
+	form.execute(*this);
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &Bureaucrat){
