@@ -44,7 +44,7 @@ void PresidentialPardonForm::beSigned(const Bureaucrat &boss) {
 	}
 }
 
-std::ostream &operator<<(std::ostream &os, const AForm &Aform){
+std::ostream &operator<<(std::ostream &os, const PresidentialPardonForm &Aform){
 	os << "Name of form : " << Aform.getName() << "\nLevel to sign : " << Aform.getSignGrade() << "\nLevel to execute : " << Aform.getExeceGrade() << "\nIs signed ? ";
 	if (Aform.getSigned() == 1)
 		os << "Yes";

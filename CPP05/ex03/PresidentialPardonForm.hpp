@@ -21,6 +21,6 @@ class PresidentialPardonForm : public AForm{
 		void execute(Bureaucrat const & executor) const;
 };
 
-std::ostream &operator<<(std::ostream &os, const AForm &AForm);
+std::ostream &operator<<(std::ostream &os, const PresidentialPardonForm &AForm);
 
 #endif

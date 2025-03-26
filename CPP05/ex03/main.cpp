@@ -11,11 +11,11 @@ int main(){
 	rrf = someRandomIntern.makeForm("robotomy", "Bender");
 	std::cout << *rrf;
 	delete rrf;
-	//rrf = someRandomIntern.makeForm("pardon", "Bender");
-	//std::cout << *rrf;
-	//delete rrf;
-	//rrf = someRandomIntern.makeForm("shrubbery", "Bender");
-	//std::cout << *rrf;
-	//delete rrf;
-	//rrf = someRandomIntern.makeForm("wrong form", "Bender");
+	rrf = someRandomIntern.makeForm("pardon", "Bender");
+	std::cout << *rrf;
+	delete rrf;
+	rrf = someRandomIntern.makeForm("shrubbery", "Bender");
+	std::cout << *rrf;
+	delete rrf;
+	rrf = someRandomIntern.makeForm("wrong form", "Bender");
 }

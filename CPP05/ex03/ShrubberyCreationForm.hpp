@@ -22,6 +22,6 @@ class ShrubberyCreationForm : public AForm{
 		std::string getTarget() const;
 };
 
-std::ostream &operator<<(std::ostream &os, const AForm &AForm);
+std::ostream &operator<<(std::ostream &os, const ShrubberyCreationForm &AForm);
 
 #endif
