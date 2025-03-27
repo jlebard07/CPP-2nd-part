@@ -1,7 +1,7 @@
-NAME = ex01
+NAME = ex02
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3	
-SRC = main.cpp Serialize.cpp
+SRC = main.cpp Dynamic.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
