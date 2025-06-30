@@ -10,13 +10,13 @@
 
 struct Date{
 	int year, mounth, day;
+	std::string fullDate;
 	
-	bool operator<(const Date &other) const {
-		if (year < other.year) return true;
-		if (mounth < other.mounth) return true;
-		if (day < other.day) return true;
-		return 0; 
-	}
+bool operator<(const Date &other) const {
+	if (year != other.year) return year < other.year;
+	if (mounth != other.mounth) return mounth < other.mounth;
+	return day < other.day;
+}
 	bool operator==(const Date&other) const {
 		if (year == other.year && mounth == other.mounth && day == other.day)
 			return true;
@@ -27,16 +27,13 @@ struct Date{
 class BitcoinPrice{
 	private :
 		std::map <Date, double> _data;
-		std::map <Date, double> _input;
 		std::ifstream _data_file;
 		std::ifstream _input_file;
 	public :
-		BitcoinPrice(char *file1, char *file2);
+		BitcoinPrice(const char *file1, const char *file2);
 		~BitcoinPrice();
 		BitcoinPrice(const BitcoinPrice &other);
 		BitcoinPrice &operator=(const BitcoinPrice &other);
-		void checkForSameDate(Date &d, bool txt);
-		void calculateRender();
 };
 
 #endif

@@ -10,16 +10,16 @@ bool	checkInput(char *str, const char *ext){
 }
 
 int main(int argc, char **argv){
-	if (argc != 3){
-		std::cerr << "Please insert two arguments to the programm" << std::endl;
+	if (argc != 2){
+		std::cerr << "Please insert only one argument to the programm" << std::endl;
 		return 0;
 	}
-	if (checkInput(argv[1], ".csv") == 0 || checkInput(argv[2], ".txt") == 0) {
-				std::cerr << "Programm arguments are meant to be one csv file and one txt file in that order" << std::endl;
+	if (checkInput(argv[1], ".txt") == 0){
+				std::cerr << "Programm arguments is meant to be an existing .txt file" << std::endl;
 					return 0;
 			}
 	try {
-		BitcoinPrice btc(argv[1], argv[2]);
+		BitcoinPrice btc(argv[1],  "data.csv");
 	}	
 	catch (std::runtime_error &e){
 		std::cerr << e.what() << std::endl;
