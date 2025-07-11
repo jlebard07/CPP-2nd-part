@@ -1,7 +1,7 @@
 NAME = RPN
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3	
-SRC = main.cpp RPN.cpp
+SRC = main.cpp PmergeMe.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

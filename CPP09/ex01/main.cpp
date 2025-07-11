@@ -9,6 +9,7 @@ int main(int ac, char **av){
 	}
 	try {
 		RPN rpn(av[1]);
+		std::cout << rpn.getResult() << std::endl;
 	}
 	catch (std::runtime_error &e){
 		std::cout << e.what() << std::endl;

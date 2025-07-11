@@ -1,34 +1,50 @@
 #include "RPN.hpp"
 
-void checkRPN(const char *str, std::stack<int> stack){
-	int count = 0;
+int operand(int a, int b, char op){
+	if (op == '+')
+		return a + b;
+	if (op == '-')
+		return a - b;
+	if (op == '*')
+		return a * b;
+	if (op == '/'){
+		if (b == 0)
+			throw (std::runtime_error("Invalid RPN expression: division by zero"));
+		return a / b;
+	}
+	return 1;
+}
 
-	while (*str){
-		if (*str == '*' || *str == '/' || *str == '+' || *str == '-')
-			count++;
-		str++;
-	}
-	if (count != stack.size() - 1) {
-		throw (std::runtime_error("Invalid RPN expression: wrong number of operators"));
-	}
-	
+int RPN::getResult() const {
+	if (stack.size() != 1)
+		throw (std::runtime_error("Invalid RPN expression: too many operands left in stack"));
+	return stack.top();
 }
 
 RPN::RPN(const char *str){
 	while (*str){
-		if (!isdigit(*str)){
+		if (isspace(*str)){
 			str++;
 			continue;
 		}
-		else {
+		else if (isdigit(*str)){
 			if (*(str + 1) && isdigit(*(str + 1)))
 				throw (std::runtime_error("Invalid RPN expression: two digits together"));
 			stack.push(*str - '0');
+			str++;
+		}
+		else if (*str == '+' || *str == '-' || *str == '*' || *str == '/'){
+			if (stack.size() < 2)
+				throw (std::runtime_error("Invalid RPN expression: not enough operands for operation"));
+			int b = stack.top();
+			stack.pop();
+			int a = stack.top();
+			stack.pop();
+			int result = operand(a, b, *str);
+			stack.push(result);
+			str++;;
 		}
 	}
-	if (stack.size() < 2)
-		throw (std::runtime_error("Invalid RPN expression: not enough operands"));
-	checkRPN(str, stack);
 }
 
 RPN::~RPN(){

@@ -13,6 +13,7 @@ class RPN{
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 		~RPN();
+		int getResult() const;
 };
 
 #endif
