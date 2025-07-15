@@ -15,9 +15,15 @@ int main(int ac, char **av){
 		std::cerr << "Please insert 2 args or more" << std::endl;
 		return 1;
 	}
-	if (check_input(av) == 0){
+	if (!check_input(av + 1)){
 		std::cerr << "Error" << std::endl;
 		return 1;
 	}
-	Pmerge bonjour((const char **)av);
+	try {
+		Pmerge bonjour((const char **)av + 1);
+	}
+	catch (std::runtime_error &e){
+		std::cout << e.what() << std::endl;
+		return 1;
+	}
 }

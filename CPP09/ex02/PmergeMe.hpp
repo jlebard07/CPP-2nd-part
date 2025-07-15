@@ -5,12 +5,17 @@
 # include <string>
 # include <vector>
 # include <queue>
+# include <sys/time.h>
+# include <cstdlib>
+# include <limits.h>
+# include <cstring>
 
 class Pmerge{
 	private :
 		std::vector<int> vec;
-		std::deque<int>  qu;
-		int *tab;
+		std::deque<int>  dq;
+		long dVec;
+		long dDq;
 	public :
 		Pmerge(const char **av);
 		~Pmerge();
