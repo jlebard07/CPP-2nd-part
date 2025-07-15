@@ -8,14 +8,14 @@
 int main(){
 	Intern someRandomIntern;
 	AForm *rrf;
-	rrf = someRandomIntern.makeForm("robotomy", "Bender");
+	rrf = someRandomIntern.makeForm("robotomy", "target");
 	std::cout << *rrf;
 	delete rrf;
-	rrf = someRandomIntern.makeForm("pardon", "Bender");
+	rrf = someRandomIntern.makeForm("pardon", "target");
 	std::cout << *rrf;
 	delete rrf;
-	rrf = someRandomIntern.makeForm("shrubbery", "Bender");
+	rrf = someRandomIntern.makeForm("shrubbery", "target");
 	std::cout << *rrf;
 	delete rrf;
-	rrf = someRandomIntern.makeForm("wrong form", "Bender");
+	rrf = someRandomIntern.makeForm("wrong form", "target");
 }

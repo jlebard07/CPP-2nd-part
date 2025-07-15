@@ -26,8 +26,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 		throw (GradeTooHighException("Form " + this->name + " has not been signed yet"));
 	if (this->execGrade < executor.getLvl())
 		throw (GradeTooLowException("Bureaucrat " + executor.getName() + " has not the level required to execute " + this->name +" Form"));
-	std::string name = this->target + "_shrubbery";
-	std::ofstream outfile(name.c_str());
+	std::string nameF = this->target + "_shrubbery";
+	std::ofstream outfile(nameF.c_str());
 	if (outfile.good()){
 		outfile <<
 		"         v" << std::endl <<
@@ -50,7 +50,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 		std::endl;
 	}
 	else{
-		std::cerr << "Can't estabilsh ofstream" << std::endl;
+		std::cerr << "Can't establish ofstream" << std::endl;
 		return ;
 	}
 	outfile.close();

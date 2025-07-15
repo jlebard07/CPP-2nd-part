@@ -54,7 +54,7 @@ std::string Bureaucrat::getName() const{
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
-	return "Bureaucrat's grade is too high !";
+	return "Bureaucrat grade is too high !";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw(){

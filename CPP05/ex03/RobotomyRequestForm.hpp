@@ -3,6 +3,7 @@
 
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"
+# include "sys/time.h"
 
 class Bureaucrat;
 

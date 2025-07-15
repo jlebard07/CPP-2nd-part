@@ -37,13 +37,19 @@ void RobotomyRequestForm::beSigned(const Bureaucrat &boss) {
 	}
 }
 
+long getTime(){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_usec;
+}
+
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const{
 	if (!this->sign)
 		throw (GradeTooHighException("Form " + this->name + " has not been signed yet"));
 	if (this->execGrade < executor.getLvl())
 		throw (GradeTooLowException("Bureaucrat " + executor.getName() + " has not the level required to execute " + this->name +" Form"));
 	std::cout << "Vrrrrrrrrrr" << std::endl;
-	std::srand(std::time(0));
+	std::srand(getTime());
 	int nb = std::rand() % 2;
 	if (nb == 0)
 		std::cout << "Robotomy of target " << this->_target << " has failed" << std::endl;

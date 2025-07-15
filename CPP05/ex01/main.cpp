@@ -39,4 +39,10 @@ int main(){
 	catch (Form::GradeTooLowException &e){
 		std::cerr << "Error : " << e.what() << std::endl;
 	}
+	try{
+		B2.signForm(F2);
+	}
+	catch (Form::GradeTooLowException &e){
+		std::cerr << "Error : " << e.what() << std::endl;
+	}
 }
