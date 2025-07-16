@@ -7,7 +7,7 @@
 template <typename T>
 
 void display(T t){
-	std::cout << t;
+	std::cout <<  t << " ";
 }
 
 template <typename T>

@@ -3,19 +3,22 @@
 
 # include <iostream>
 # include <string>
-# include "Array.tpp"
 
 template <typename T>
 class Array{
 	private :
 		T *arr;
+		size_t s;
 	public :
 		Array();
 		~Array();
-		Array(int n);
+		Array(unsigned int n);
 		Array(const Array &other);
 		Array &operator=(const Array &other);
 		size_t size() const;
+		T &operator[](size_t i);
 };
+
+# include "Array.tpp"
 
 #endif

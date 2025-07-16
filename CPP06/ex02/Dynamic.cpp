@@ -1,4 +1,5 @@
 #include "Dynamic.hpp"
+#include <sys/time.h>
 
 Base::~Base() {}
 
@@ -14,8 +15,14 @@ B::B() {}
 
 C::C() {}
 
+long getTimee(){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_usec;
+}
+
 Base *generate(void){
-	std::srand(std::time(0));
+	std::srand(getTimee());
 	int nb = std::rand() % 3;
 	if (nb == 0){
 		std::cout << "Objet de la classe A instancie" << std::endl;
@@ -51,7 +58,7 @@ void identify(Base *p){
 
 void identify(Base &p){
 	try{
-		A &a = dynamic_cast<A&>(p);
+		A a = dynamic_cast<A&>(p);
 		std::cout << "Objet de type A identifie par fonction 2\n";
 		(void)a;
 		return ;
@@ -59,7 +66,7 @@ void identify(Base &p){
 	catch (std::exception &e){
 	}
 	try{
-		B &b = dynamic_cast<B&>(p);
+		B b = dynamic_cast<B&>(p);
 		std::cout << "Objet de type B identifie par fonction 2\n";
 		(void)b;
 		return ;
@@ -67,7 +74,7 @@ void identify(Base &p){
 	catch (std::exception &e){
 	}
 	try{
-		C &c = dynamic_cast<C&>(p);
+		C c = dynamic_cast<C&>(p);
 		std::cout << "Objet de type C identifie par fonction 2\n";
 		(void)c;
 		return ;

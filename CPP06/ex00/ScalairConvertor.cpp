@@ -102,7 +102,10 @@ void ScalairConvertor::convert(std::string str){
 		int i = static_cast<int>(f);
 		double d = static_cast<double>(f);
 		displayChar(f);
-		std::cout << "int: " << i << std::endl;
+		if (f <= 2147483647.0 && f >= -2147482648.0)
+			std::cout << "int: " << i << std::endl;
+		else
+			std::cout << "int: risk of overflow" << std::endl;
 		std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl;
 		std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl;
 	}
