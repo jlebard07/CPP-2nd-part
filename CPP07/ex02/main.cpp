@@ -24,4 +24,10 @@ int main()
 	catch (std::runtime_error &e){
 		std::cout << e.what() << std::endl;
 	}
+	try{
+		display(D[12]);
+	}
+	catch (std::runtime_error &e){
+		std::cout << e.what() << std::endl;
+	}
 }

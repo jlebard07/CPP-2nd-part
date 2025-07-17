@@ -17,6 +17,7 @@ class Span {
 		int shortestSpan();
 		int longestSpan();
 		void addSeveral(std::vector <int>::iterator it, std::vector <int>::iterator it2);
+		void displayVec();
 };
 
 #endif

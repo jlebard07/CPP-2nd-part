@@ -1,21 +1,17 @@
 NAME = ex02
-C++ = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3	
-SRC = main.cpp Array.tpp
-OBJ = $(SRC:.cpp=.o)
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+SRC = main.cpp
 
-all : $(NAME)
+all: $(NAME)
 
-%.o : %.cpp
-	$(C++) $(CPPFLAGS) -c $< -o $@
+$(NAME): $(SRC)
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
-$(NAME) : $(OBJ)
-	$(C++) $(CPPFLAGS) $^ -o $@
+clean:
+	rm -f *.o
 
-clean :
-	rm -f $(OBJ)
-
-fclean : clean
+fclean: clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all

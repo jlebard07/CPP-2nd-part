@@ -62,3 +62,9 @@ void Span::addSeveral(std::vector <int>::iterator it, std::vector <int>::iterato
 	}
 }
 
+void Span::displayVec(){
+	for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++){
+		std::cout << *it << "\n";
+	}
+}
+
