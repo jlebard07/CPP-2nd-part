@@ -1,5 +1,22 @@
 #include "PmergeMe.hpp"
 
+void generateIndices(std::vector<int> &out, int left, int right)
+{
+    if (left > right)
+        return;
+    int mid = (left + right) / 2;
+    out.push_back(mid);
+    generateIndices(out, left, mid - 1);
+    generateIndices(out, mid + 1, right);
+}
+
+std::vector<int> getIndices(int k)
+{
+    std::vector<int> out;
+    generateIndices(out, 0, k - 1);
+    return out;
+}
+
 long getMsTime(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
@@ -49,8 +66,9 @@ std::vector<int> sortVec(std::vector<int> &vec){
 	if (vec.size() % 2 == 1)
 		smalls.push_back(vec.back());
 	bigs = sortVec(bigs);
-	for (std::vector<int>::iterator it = smalls.begin(); it != smalls.end(); it++)
-		insertValue(bigs, *it);
+	std::vector<int> indices = getIndices((int)smalls.size());
+	for(std::vector<int>::iterator it = indices.begin(); it != indices.end(); it++)
+		insertValue(bigs, smalls[*it]);
 	return bigs;
 }
 
@@ -89,8 +107,9 @@ std::deque<int> sortDq(std::deque<int> &dq){
 	if (dq.size() % 2 == 1)
 		smalls.push_back(dq.back());
 	bigs = sortDq(bigs);
-	for(int i = 0; i < (int)smalls.size(); i++)
-		insertValueBis(bigs, smalls[i]);
+	std::vector<int> indices = getIndices((int)smalls.size());
+	for(std::vector<int>::iterator it = indices.begin(); it != indices.end(); it++)
+		insertValueBis(bigs, smalls[*it]);
 	return bigs;
 }
 
@@ -119,7 +138,10 @@ Pmerge::Pmerge(const char **av){
 
 Pmerge::~Pmerge(){
 	std::cout << "After :\t\t";
-	for(std::vector<int>::iterator it = this->vec.begin(); it != this->vec.end(); it++){
+	// for(std::vector<int>::iterator it = this->vec.begin(); it != this->vec.end(); it++){
+	// 	std::cout << *it << " ";
+	// }
+	for(std::deque<int>::iterator it = this->dq.begin(); it != this->dq.end(); it++){
 		std::cout << *it << " ";
 	}
 	std::cout << "\n";
