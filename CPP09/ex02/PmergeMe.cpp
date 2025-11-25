@@ -113,14 +113,37 @@ std::deque<int> sortDq(std::deque<int> &dq){
 	return bigs;
 }
 
-Pmerge::Pmerge(const char **av){
+Pmerge::Pmerge(const char **av, bool arg2){
 	int count = 0;
-	while (av[count]){
-		checkMax(av[count]);
-		this->vec.push_back(atoi(av[count]));
-		this->dq.push_back(atoi(av[count]));
-		count++;
+	if (arg2) {
+		const char *s = av[0];
+		int i = 0;
+		while (s[i]) {
+			while (s[i] && isspace(s[i]))
+				i++;
+			if (!s[i])
+				break;
+			int start = i;
+			while (s[i] && !isspace(s[i]))
+				i++;
+			int len = i - start;
+			std::string token(s + start, len);
+			checkMax(token.c_str());
+			int value = atoi(token.c_str());
+			this->vec.push_back(value);
+			this->dq.push_back(value);
+		}
 	}
+	else{
+		while (av[count]){
+			checkMax(av[count]);
+			this->vec.push_back(atoi(av[count]));
+			this->dq.push_back(atoi(av[count]));
+			count++;
+		}
+	}
+	if (this->vec.empty())
+		throw (std::runtime_error ("No value entered"));
 	std::cout << "Before :\t";
 	for (std::vector<int>::iterator it = this->vec.begin(); it != this->vec.end(); it++){
 		std::cout << *it << " ";

@@ -17,7 +17,7 @@ class Pmerge{
 		long dVec;
 		long dDq;
 	public :
-		Pmerge(const char **av);
+		Pmerge(const char **av, bool arg2);
 		~Pmerge();
 		Pmerge &operator=(const Pmerge &other);
 		Pmerge(const Pmerge &other);
