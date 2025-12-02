@@ -1,26 +1,53 @@
 #include "PmergeMe.hpp"
 
-void generateIndices(std::vector<int> &out, int left, int right)
+std::vector<int> getJacobsthal(int n)
 {
-    if (left > right)
-        return;
-    int mid = (left + right) / 2;
-    out.push_back(mid);
-    generateIndices(out, left, mid - 1);
-    generateIndices(out, mid + 1, right);
+    std::vector<int> J;
+	if (n <= 0)
+		return J;
+	J.push_back(0);
+	if (n == 1)
+		return J;
+	J.push_back(1);
+	if (n == 2)
+		return J;
+	while (1){
+		long res = J[J.size() - 1] + 2 * J[J.size() - 2];
+		if (res >= n)
+			break ;
+		if (res > INT_MAX)
+			throw (std::runtime_error ("list to long for Jacobsthal order's implementation"));
+		J.push_back(res);
+	}
+	return J;
 }
 
 std::vector<int> getIndices(int k)
 {
     std::vector<int> out;
-    generateIndices(out, 0, k - 1);
+	if (k <= 0)	
+		return out;
+	std::vector<int> J = getJacobsthal(k);
+	int last = 0;
+	for (size_t idx = 1; idx < J.size(); idx++){
+		int start = J[idx];
+		int end = J[idx - 1];
+		for (int i = start; i > end; i--){
+			if (i < k){
+				out.push_back(i);
+			}
+		}
+		last = J[idx];
+	}
+	for (int i = last; i < k; i++)
+		out.push_back(i);
     return out;
 }
 
 long getMsTime(){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec * 1000000 + tv.tv_usec;
+	return tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 void checkMax(const char *str){
